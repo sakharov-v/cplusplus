@@ -36,5 +36,5 @@ int main()
 
      cout << rotate (a) << endl;
 
-     cout << (int) ceil((8*sizeof(int)-1) * log10(2)) << endl;
+     //cout << (int) ceil((8*sizeof(int)-1) * log10(2)) << endl;
 }
