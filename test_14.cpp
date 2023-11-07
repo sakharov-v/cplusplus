@@ -51,13 +51,14 @@ int nod_remain( int a, int b )
 
 }
 
+/*Бинарный алгоритм*/
 int nod_binar(int a, int b) {
 	if (a == b)
 		return a;
 	if (a == 0)
 		return b;
 	if (b == 0)
-			return a;
+		return a;
 	if ((~a & 1) != 0) {
 		if ((b & 1) != 0)
 			return nod_binar(a >> 1, b);
