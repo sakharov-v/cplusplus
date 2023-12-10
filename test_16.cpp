@@ -6,14 +6,13 @@
 using namespace std;
 
 #include <bitset>
-#include <cstddef>
 
 /*--------------------------------------------------------------------------
-                    Ханойская башня
+                    Ханойская башня (циклическая реализация)
 ---------------------------------------------------------------------------*/
 
 template <size_t  bitsetsize>
-// ищет младший из установленных битов
+// ищем младший из установленных битов
 int find_min_bit( bitset<bitsetsize> &A )
 {
      for ( int i = 0 ; i < bitsetsize ; i++)
@@ -30,7 +29,12 @@ void rotate (bitset<bitsetsize> &A, bitset<bitsetsize> &B)
      int posA = find_min_bit(A);
      int posB = find_min_bit(B);
 
-     if (posA != -1 && posB != -1)
+     if (posA == -1 && posB == -1)
+     {
+          cout << "Сборка башни завершена!"<< endl;
+          abort();
+     }
+     else if (posA != -1 && posB != -1)
      {
           if (posA > posB)
           {
@@ -42,7 +46,8 @@ void rotate (bitset<bitsetsize> &A, bitset<bitsetsize> &B)
                B.set( posA, true);
                A.set( posA, false);
           }
-     } else
+     }
+     else
      {
           if (posA > posB)
           {
@@ -58,14 +63,13 @@ void rotate (bitset<bitsetsize> &A, bitset<bitsetsize> &B)
 }
 
 template <size_t  bitsetsize>
-void hanoy(int n, bitset<bitsetsize> &A, bitset<bitsetsize> &B, bitset<bitsetsize> &C )
+void hanoy( bitset<bitsetsize> &A, bitset<bitsetsize> &B, bitset<bitsetsize> &C )
 {
      cout << "start" << endl;
      cout << A.to_string() <<" - "<< B.to_string() <<" - "<< C.to_string() << endl;
     
-    // static int s = 1;
      while (!B.all() || !C.all()) {
-          cout << "loop" << endl;
+          //cout << "loop" << endl;
 
           rotate (A , C);
           cout << A.to_string() <<" - "<< B.to_string() << " - " << C.to_string() << endl; 
@@ -80,9 +84,8 @@ void hanoy(int n, bitset<bitsetsize> &A, bitset<bitsetsize> &B, bitset<bitsetsiz
 
 int main()
 {
-
      // число дисков
-     const int n = 6;
+     const int n = 7;
      
      // создаем пустые башни
      bitset <n> A, B, C;
@@ -90,5 +93,5 @@ int main()
      // заполняем первую башню дисками
      A = ~ A;
 
-     hanoy(3, A, B, C);
+     hanoy(A, B, C);
 }
