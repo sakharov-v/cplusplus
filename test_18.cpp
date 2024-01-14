@@ -10,8 +10,6 @@ using namespace std;
 /*--------------------------------------------------------------------------
                     Массивы, векторы
 ---------------------------------------------------------------------------*/
-
-
 int main() {
  
     setlocale(LC_ALL, "");
@@ -83,7 +81,7 @@ int main() {
 
     /* Отчет о заработной плате */
 
-    srand( time(0) );
+    /* srand( time(0) );
     int arr[9] = { 0 }; 
     for (int i = 0; i < 1000; i++){
         int zp = rand() % (1500 - 200 + 1) + 200; //считаем что зп в диапазоне от 200 до 1500 $
@@ -100,6 +98,51 @@ int main() {
         for( int c = 0; c < arr[i]; c++)
             cout << '*';
         cout << endl;
-    }   
+    }   */ 
+
+    /* Пузырьковая сортировка */
+
+    srand( time(0) );
+    
+    int arr[50] = {0};
+    
+    cout << "Несортированный массив" << endl;
+
+    for(int i = 0; i < 50; i++){
+        arr[i] = rand() % 1000;
+        cout << setw(4) << arr[i];
+    }
+    cout << endl;
+    
+    /*  
+    // сортировка пузырьком
+    for(int i = 0; i < 50; i++){
+        for(int j = 0; j < 49; j++){
+            if (arr[j] > arr[j+1]){
+                int buffer = arr[j+1];
+                arr[j+1] = arr[j];
+                arr[j] = buffer;
+            }
+        }
+    }
+    */ 
+
+    // сортировка пузырьком 2
+    for(int i = 0; i < 50; i++){
+        for(int j = 0; j < 49-i; j++){
+            if (arr[j] > arr[j+1]){
+                int buffer = arr[j+1];
+                arr[j+1] = arr[j];
+                arr[j] = buffer;
+            }
+        }
+    }
+
+    cout << "Сортированный массив" << endl;
+
+    for(int i = 0; i < 50; i++){
+        cout << setw(4) << arr[i];
+    }
+    cout << endl;
 
 }
